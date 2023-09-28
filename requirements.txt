@@ -1,0 +1,6 @@
+flask
+Gunicorn
+psycopg2-binary
+Flask-Migrate
+Flask-SQLAlchemy
+pytz

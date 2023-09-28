@@ -79,7 +79,8 @@ def form():
         else:
             return render_template("form.html", negative=True, number=number)
 
-    return render_template("form.html", form=True)
+    # return render_template("form.html", form=True)
+      return 'hello'
 
 
 if __name__ == '__main__':

@@ -17,7 +17,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 
-class CancerAwarenessQuestionnaire(db.Model):
+class CancerAwarenessQuestionnaireOutside(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     number = db.Column(db.Integer)
     suspicion = db.Column(db.Boolean)
@@ -39,6 +39,7 @@ suspicion = False
 
 @app.route('/', methods=['GET', 'POST'])
 def form():
+
     if request.method == 'POST':
         global suspicion
 
@@ -50,7 +51,7 @@ def form():
             else:
                 return False
 
-        numbers_raw = CancerAwarenessQuestionnaire.query.with_entities(CancerAwarenessQuestionnaire.number).all()
+        numbers_raw = CancerAwarenessQuestionnaireOutside.query.with_entities(CancerAwarenessQuestionnaireOutside.number).all()
         numbers = []
         for number in numbers_raw:
             numbers.append(number.number)
@@ -58,7 +59,7 @@ def form():
         while number in numbers:
             number = random.randint(100000, 300000)
 
-        q = CancerAwarenessQuestionnaire()
+        q = CancerAwarenessQuestionnaireOutside()
         q.number = number
         q.question1 = convert(request.form['rq1'])
         q.question2 = convert(request.form['rq2'])

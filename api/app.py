@@ -54,7 +54,7 @@ def form():
         numbers = []
         for number in numbers_raw:
             numbers.append(number.number)
-        number = None
+        number = random.randint(100000, 300000)
         while number in numbers:
             number = random.randint(100000, 300000)
 

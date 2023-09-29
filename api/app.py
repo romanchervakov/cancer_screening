@@ -72,6 +72,7 @@ def form():
         q.question9 = convert(request.form['rq9'])
         q.suspicion = suspicion
         q.date_sent = datetime.datetime.now(pytz.timezone("Europe/Moscow")).strftime("%Y-%m-%d %H:%M:%S")
+        q.processed = False
         db.session.add(q)
         db.session.commit()
 

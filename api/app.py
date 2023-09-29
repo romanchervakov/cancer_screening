@@ -1,7 +1,7 @@
 import datetime
 import pytz
 import random
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for
 from flask import Flask
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
@@ -39,7 +39,6 @@ suspicion = False
 
 @app.route('/', methods=['GET', 'POST'])
 def form():
-
     if request.method == 'POST':
         global suspicion
 
@@ -51,7 +50,8 @@ def form():
             else:
                 return False
 
-        numbers_raw = CancerAwarenessQuestionnaireOutside.query.with_entities(CancerAwarenessQuestionnaireOutside.number).all()
+        numbers_raw = CancerAwarenessQuestionnaireOutside.query.with_entities(
+            CancerAwarenessQuestionnaireOutside.number).all()
         numbers = []
         for number in numbers_raw:
             numbers.append(number.number)
@@ -76,11 +76,13 @@ def form():
         db.session.add(q)
         db.session.commit()
 
-        if suspicion:
-            return render_template("form.html", positive=True, number=number)
-        else:
-            return render_template("form.html", negative=True, number=number)
+        return redirect(url_for('result', number=number, status=suspicion))
 
-    return render_template("form.html", form=True)
+    return render_template("form.html")
+
+
+@app.route('/result/<int:number>/<int:status>')
+def result(number, status):
+    return render_template("result.html", status=status, number=number)
 
 

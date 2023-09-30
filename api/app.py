@@ -19,6 +19,7 @@ migrate = Migrate(app, db)
 
 class CancerAwarenessQuestionnaireOutside(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    inner_table_id = db.Column(db.Integer)
     number = db.Column(db.Integer)
     suspicion = db.Column(db.Boolean)
     question1 = db.Column(db.Boolean)
@@ -31,7 +32,6 @@ class CancerAwarenessQuestionnaireOutside(db.Model):
     question8 = db.Column(db.Boolean)
     question9 = db.Column(db.Boolean)
     date_sent = db.Column(db.DateTime)
-    processed = db.Column(db.Boolean)
 
 
 suspicion = False

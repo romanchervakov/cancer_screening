@@ -9,10 +9,14 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba111'
-app.config['SQLALCHEMY_DATABASE_URI'] = ('postgresql://default:'
-                                         'isqa9DuErAB6@'
-                                         'ep-small-moon-04028058-pooler.us-east-1.postgres.vercel-storage.com:'
-                                         '5432/verceldb')
+app.config['SQLALCHEMY_DATABASE_URI'] = ('postgresql://uqmsiv4msken1z8u9jbr:'
+                                         'ScqDwM7eRnwZOy8DtwESB06fmkiPCD@'
+                                         'bgvj1gcg7xvieqm7pey1-postgresql.services.clever-cloud.com:5432/'
+                                         'bgvj1gcg7xvieqm7pey1')
+app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
+    'pool_pre_ping': True,
+    'pool_recycle': 300
+}
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 

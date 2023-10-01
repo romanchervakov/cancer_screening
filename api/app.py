@@ -15,7 +15,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = ('postgresql://uqmsiv4msken1z8u9jbr:'
                                          'bgvj1gcg7xvieqm7pey1')
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
     'pool_pre_ping': True,
-    'pool_recycle': 300
+    'pool_recycle': 3600
 }
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)

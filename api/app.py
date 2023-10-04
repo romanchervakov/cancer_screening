@@ -45,6 +45,7 @@ suspicion = False
 def form():
     if request.method == 'POST':
         global suspicion
+        suspicion = False
 
         def convert(answer):
             global suspicion
